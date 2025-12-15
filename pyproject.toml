@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyshadowspray"
+version = "1.0.0"
+description = "Python tool for shadow credentials spray attacks against Active Directory (based on ShadowSpray by Dec0ne)"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "PyShadowSpray Contributors"}
+]
+keywords = ["ldap", "active-directory", "shadow-credentials", "security", "pentesting"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Information Technology",
+    "Topic :: Security",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "typer[all]>=0.9.0",
+    "ldap3 @ git+https://github.com/ly4k/ldap3.git",
+    "dsinternals",
+    "cryptography",
+    "pycryptodome",
+    "minikerberos",
+    "impacket",
+    "oscrypto @ git+https://github.com/wbond/oscrypto.git",
+    "tqdm>=4.65.0",
+]
+
+[project.scripts]
+pyshadowspray = "PyShadowSpray:app"
+
+[project.urls]
+Homepage = "https://github.com/Coontzy1/PyShadowSpray"
+Repository = "https://github.com/Coontzy1/PyShadowSpray"
+Issues = "https://github.com/Coontzy1/PyShadowSpray/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=23.0",
+    "flake8>=6.0",
+]
+
+[tool.setuptools]
+packages = ["lib", "lib.scripts"]
+py-modules = ["PyShadowSpray"]
+
+[tool.setuptools.package-data]
+"*" = ["*.py"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
